@@ -2,22 +2,31 @@ function getRandomNumber(min, max) { // this function generates a random number 
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+function checkAndRun() {
+    chrome.storage.sync.get(['smiskiEnabled'], (result) => {
+        // run only if smiskisEnabled is true
+        if (result.smiskiEnabled !== false) {
+            addSmiskis(); // call the function to add smiskis to thumbnails
+        }
+    });
+}
+
 function addSmiskis() { // function to add smiskis
 
-    const totalImages = null; 
+    const totalImages = null;
 
     // find thumbnails on  youtube as a container
-    const thumbnails = document.querySelectorAll('ytb-thumbail:not(.smiski-added)'); 
+    const thumbnails = document.querySelectorAll('ytb-thumbail:not(.smiski-added)');
 
     thumbnails.forEach(thumbnail => {
         thumbnail.classList.add('smiski-added'); // mark thumbnail as processed
-        thumbnail.style.position = 'relative'; 
+        thumbnail.style.position = 'relative';
         thumbnail.style.overflow = 'hidden'; // makes sure the smiskis don't go outside of the thumbnail
 
-        const smiski = document.createElement('img'); 
+        const smiski = document.createElement('img');
 
         // below does the random image selection for the smiski
-        const smiskiImages = getRandomNumber(1, totalImages); 
+        const smiskiImages = getRandomNumber(1, totalImages);
         const imagePath = `images/s_${smiskiImages}.png`;
         smiski.src = chrome.runtime.getURL(imagePath);
 
@@ -27,7 +36,7 @@ function addSmiskis() { // function to add smiskis
 
         // random positioning logic 
 
-        const placement = getRandomNumber(1,5); // gets a random number; 1: top left, 2: top right, 3: bottom left, 4: bottom right, 5: middle
+        const placement = getRandomNumber(1, 5); // gets a random number; 1: top left, 2: top right, 3: bottom left, 4: bottom right, 5: middle
         const randomX = getRandomNumber(0, thumbnail.offsetWidth - 50); // random x position within the thumbnail width
         const randomY = getRandomNumber(0, thumbnail.offsetWidth - 50); // random y position within the thumbnail height
 
@@ -43,30 +52,30 @@ function addSmiskis() { // function to add smiskis
         } else if (placement === 4) {
             smiski.style.bottom = `${randomY}px`;
             smiski.style.right = `${randomX}px`;
-        } else if (placement === 5){
+        } else if (placement === 5) {
             smiski.style.middle = `${randomY}px`;
             smiski.style.middle = `${randomX}px`;
         } else {
             smiski.style.top = `${randomY}px`;
             smiski.style.left = `${randomX}px`;
         }
-    }
 
-    const randomSize = getRandomNumber(20, 50); // random size between 20px and 50px
-    smiski.style.width = `${randomSize}px`;
-    smiski.style.height = auto; // maintain aspect ratio
+        const randomSize = getRandomNumber(20, 50); // random size between 20px and 50px
+        smiski.style.width = `${randomSize}px`;
+        smiski.style.height = 'auto'; // maintain aspect ratio
 
-    // okay so basically this whole thing above this comment is making modications to each smiski image to make sure it fits on each thumbnail and that it has variation on each thumbnail
+        // okay so basically this whole thing above this comment is making modications to each smiski image to make sure it fits on each thumbnail and that it has variation on each thumbnail
 
-    // add smiski to each thumbnail
-    thumbnail.appendChild(smiski);
+        // add smiski to each thumbnail
+        thumbnail.appendChild(smiski);
+    })
 }
 
-addSmiskis(); // call the function to add smiskis to thumbnails
+checkAndRun(); // call the function to check the setting and run the script
 
 // observe the youtube page when it updates so more smiskis load
 const observer = new MutationObserver(() => {
-    addSmiskis(); 
+    checkAndRun();
 });
 
 observer.observe(document.body, {

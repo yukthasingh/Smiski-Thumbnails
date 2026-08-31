@@ -13,6 +13,10 @@
         "https://*youtube.com/*",
         "https://*www.youtube.com/*"
     ],
+    "action": {
+        "default+popup": "popup.html",
+        "default_icon": null
+    }, 
     "content_scripts": [
         {
             "matches": [

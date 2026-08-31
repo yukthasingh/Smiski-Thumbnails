@@ -1,0 +1,30 @@
+body {
+    color: black;
+    font-family:'Lucida Sans', 'Lucida Sans Unicode', Verdana, sans-serif;
+    margin: auto;
+    overflow: hidden;
+    text-align: center;
+}
+
+h1 {
+    font-size: 24rem;
+    padding: 10rem;
+}
+
+p {
+    font-size: 16rem;
+    padding: 10rem;
+}
+
+button {
+    background-color: #aee4a3;
+    border: none;
+    color: white;
+    padding: 10rem 20rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16rem;
+    margin: 4rem 2rem;
+    cursor: pointer;
+}
