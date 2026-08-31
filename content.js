@@ -20,7 +20,7 @@ function removeSmiskis() {
 
 function addSmiskis() { // function to add smiskis
 
-    const totalImages = null;
+    const totalImages = 69;
 
     // find thumbnails on  youtube as a container
     const thumbnails = document.querySelectorAll('ytb-thumbail:not(.smiski-added)');
