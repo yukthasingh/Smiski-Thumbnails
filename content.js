@@ -7,8 +7,15 @@ function checkAndRun() {
         // run only if smiskisEnabled is true
         if (result.smiskiEnabled !== false) {
             addSmiskis(); // call the function to add smiskis to thumbnails
+        } else {
+            removeSmiskis(); // call the function to remove smiskis from thumbnails
         }
-    });
+    })
+}
+
+function removeSmiskis() {
+  document.querySelectorAll('.smiski-img').forEach(img => img.remove());
+  document.querySelectorAll('.smiski-added').forEach(el => el.classList.remove('smiski-added'));
 }
 
 function addSmiskis() { // function to add smiskis
@@ -24,6 +31,7 @@ function addSmiskis() { // function to add smiskis
         thumbnail.style.overflow = 'hidden'; // makes sure the smiskis don't go outside of the thumbnail
 
         const smiski = document.createElement('img');
+        smiski.classList.add('smiski-img');
 
         // below does the random image selection for the smiski
         const smiskiImages = getRandomNumber(1, totalImages);
@@ -73,12 +81,19 @@ function addSmiskis() { // function to add smiskis
 
 checkAndRun(); // call the function to check the setting and run the script
 
+// listen to updates sent from popup.js in real time
+chrome.storage.onChanged.addListener((changes) => {
+    if (changes.smiskiEnabled) {
+        checkAndRun(); // re-run the function to check the setting and run the script
+    }
+})
+
 // observe the youtube page when it updates so more smiskis load
 const observer = new MutationObserver(() => {
     checkAndRun();
-});
+})
 
 observer.observe(document.body, {
     childList: true,
     subtree: true
-});
+})

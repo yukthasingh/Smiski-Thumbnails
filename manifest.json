@@ -4,14 +4,16 @@
     "description": "Smiski cameos on every Youtube video thumbnail!",
     "version": "1.0.0",
     "permissions": [
-        "activeTab"
+        "activeTab",
+        "storage"
     ],
     "host_permissions": [
         "https://youtube.com/*",
         "https://www.youtube.com/*"
     ],
     "action": {
-        "default+popup": "popup.html"
+        "default_popup": "popup.html",
+        "default_icon": "images/s_42.png"
     },
     "content_scripts": [
         {
