@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // save state when button pressed
-    button.addEventListener('change', () => {
+    button.addEventListener('click', () => {
         chrome.storage.sync.get(['smiskiEnabled'], (result) => {
             const currentState = result.smiskiEnabled !== false; // default to true if undefined
             const newState = !currentState; // toggle state

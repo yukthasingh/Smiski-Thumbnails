@@ -7,10 +7,6 @@
         "activeTab",
         "storage"
     ],
-    "host_permissions": [
-        "https://youtube.com/*",
-        "https://www.youtube.com/*"
-    ],
     "action": {
         "default_popup": "popup.html",
         "default_icon": "images/s_42.png"
@@ -24,7 +20,7 @@
             "js": [
                 "content.js"
             ],
-            "run_at": "document_end"
+            "run_at": "document_idle"
         }
     ],
     "web_accessible_resources": [
