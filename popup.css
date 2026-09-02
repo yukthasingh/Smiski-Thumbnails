@@ -1,22 +1,21 @@
 body {
     color: black;
-    font-family:'Lucida Sans', 'Lucida Sans Unicode', Verdana, sans-serif;
-    margin: auto;
+    font-family: 'Courier New', Courier, monospace;
+    margin: 10px;
     overflow: hidden;
     text-align: center;
 }
 
 h1 {
     font-size: 24px;
-    padding: 10px;
 }
 
 p {
     font-size: 16px;
-    padding: 10px;
 }
 
 button {
+    font-family: 'Courier New';
     background-color: #aee4a3;
     border: none;
     color: white;
@@ -27,4 +26,11 @@ button {
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
+    border-radius: 30px;
+}
+
+.smiski-image {
+    width: 100px;
+    height: 100px;
+    position: center;
 }

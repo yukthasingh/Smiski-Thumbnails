@@ -7,6 +7,9 @@
         "activeTab",
         "storage"
     ],
+    "host_permissions": [
+        "https://www.youtube.com/*"
+    ],
     "action": {
         "default_popup": "popup.html",
         "default_icon": "images/s_42.png"
@@ -14,7 +17,6 @@
     "content_scripts": [
         {
             "matches": [
-                "https://youtube.com/*",
                 "https://www.youtube.com/*"
             ],
             "js": [
@@ -29,9 +31,11 @@
                 "images/s_*.png"
             ],
             "matches": [
-                "https://youtube.com/*",
                 "https://www.youtube.com/*"
             ]
         }
-    ]
+    ], 
+    "background": {
+        "service_worker": "background.js"
+    }
 }

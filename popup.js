@@ -24,8 +24,18 @@ document.addEventListener('DOMContentLoaded', () => {
             const currentState = result.smiskiEnabled !== false; // default to true if undefined
             const newState = !currentState; // toggle state
 
-            chrome.storage.sync.set({ smiskiEnabled: newState }, () => {
-                updateButtonUI(newState); // update button UI after saving
+            chrome.runtime.sendMessage({
+                event: "toggleSmiski",
+                enabled: newState
+            }, (response) => {
+                if (chrome.runtime.lastError) {
+                    console.error(chrome.runtime.lastError);
+                    return;
+                }
+
+                if (response?.status === "success") {
+                    updateButtonUI(newState);
+                }
             })
         })
     })
