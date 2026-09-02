@@ -4,7 +4,6 @@
     "description": "Smiski cameos on every Youtube video thumbnail!",
     "version": "1.0.0",
     "permissions": [
-        "activeTab",
         "storage"
     ],
     "host_permissions": [
